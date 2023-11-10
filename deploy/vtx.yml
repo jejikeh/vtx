@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vtx
+spec:
+  selector:
+    matchLabels:
+      app: vtx
+  template:
+    metadata:
+      labels:
+        app: vtx
+        app.kubernetes.io/name: vtx
+    spec:
+      containers:
+        - name: vtx
+          image: lapkicorp/vtx:latest
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vtx-service
+spec:
+  selector:
+    app: vtx
+    app.kubernetes.io/name: vtx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

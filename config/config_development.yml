@@ -1,0 +1,7 @@
+---
+type: yml
+app:
+  environment: development
+vosk:
+  host: localhost
+  port: 2700
